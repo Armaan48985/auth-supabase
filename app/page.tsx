@@ -14,6 +14,11 @@ export default function Home() {
     router.refresh();
   }
 
+  const getSession = async () => {
+    const {data : {session}} = await supabase.auth.getSession()
+    console.log(session)
+  }
+
   return <div>Logged in
     <button onClick={logout} className="px-2 py-1 bg-blue-500 text-white cursor-pointer">Logout</button>
   </div>

@@ -45,6 +45,17 @@ export default function Login() {
     }));
   }
 
+  const loginwithGoogle = async (response:any) => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return <div className="container mx-auto w-[400px] grid gap-4">
     <div className='grid'>
       <label>Email</label>
@@ -67,6 +78,7 @@ export default function Login() {
     {success && <div className="my-4 bg-green-100 px-2 text-green-600">An email has been sent to {data.email} to login.</div>}
     <div>
       <button className="px-4 py-2 bg-blue-500 rounded cursor-pointer" onClick={login}>Login</button>
+      <button className="bg-white text-black p-2 rounded-lg mt-10" onClick={loginwithGoogle}>Sign In with google</button>
     </div>
   </div>;
 }
